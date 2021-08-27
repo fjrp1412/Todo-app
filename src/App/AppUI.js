@@ -15,6 +15,12 @@ function AppUI(props) {
       />
 
       <TodoList>
+        {props.error && <p>Hubo un error en la aplicación...</p>}
+        {props.loading && <p>Estamos cargando la aplicación</p>}
+        {!props.loading && !props.searchedTodos.length && (
+          <p>Crea tu primer TODO</p>
+        )}
+
         {props.searchedTodos.map((todo) => (
           <TodoItem
             key={todo.text}
