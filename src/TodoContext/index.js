@@ -5,6 +5,7 @@ const TodoContext = React.createContext();
 
 function TodoProvider(props) {
   const [searchValue, setSearchValue] = React.useState("");
+  const [openModal, setOpenModal] = React.useState(false);
 
   const {
     item: todos,
@@ -39,6 +40,12 @@ function TodoProvider(props) {
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
+
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({ completed: false, text });
+    saveTodos(newTodos);
+  };
   return (
     <TodoContext.Provider
       value={{
@@ -51,6 +58,9 @@ function TodoProvider(props) {
         toggleCompleteTodo,
         deleteTodo,
         searchedTodos,
+        openModal,
+        setOpenModal,
+        addTodo,
       }}
     >
       {props.children}

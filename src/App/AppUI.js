@@ -5,10 +5,19 @@ import { TodoSearch } from "../TodoSearch";
 import { TodoItem } from "../TodoItem";
 import { CreateTodoButton } from "../CreateTodoButton";
 import { TodoList } from "../TodoList";
+import { Modal } from "../Modal";
+import { TodoForm } from "../TodoForm";
 
 function AppUI() {
-  const { error, loading, toggleCompleteTodo, deleteTodo, searchedTodos } =
-    React.useContext(TodoContext);
+  const {
+    error,
+    loading,
+    toggleCompleteTodo,
+    deleteTodo,
+    searchedTodos,
+    openModal,
+    setOpenModal,
+  } = React.useContext(TodoContext);
   return (
     <>
       <TodoCounter />
@@ -28,7 +37,13 @@ function AppUI() {
           />
         ))}
       </TodoList>
-      <CreateTodoButton />
+      {openModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
+
+      <CreateTodoButton setOpenModal={setOpenModal} openModal={openModal} />
     </>
   );
 }
