@@ -10,16 +10,22 @@ function TodoList(props) {
     onLoading,
     onEmptyTodos,
     render,
+    totalTodos,
+    onEmptySearchResults,
+    searchValue,
+    children,
   } = props;
 
   return (
     <section className="TodoList-container">
       {error && onError()}
       {loading && onLoading()}
-      {!loading && !searchedTodos.length && onEmptyTodos()}
+      {!loading && !totalTodos && onEmptyTodos()}
+      {!!totalTodos &&
+        !searchedTodos.length &&
+        onEmptySearchResults(searchValue)}
 
-      {searchedTodos.map(render)}
-      <ul>{props.children}</ul>
+      {searchedTodos.map(render || children)}
     </section>
   );
 }
