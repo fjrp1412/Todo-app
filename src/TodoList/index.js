@@ -25,7 +25,7 @@ function TodoList(props) {
         !searchedTodos.length &&
         onEmptySearchResults(searchValue)}
 
-      {searchedTodos.map(render || children)}
+      {!loading && searchedTodos.map(render || children)}
     </section>
   );
 }

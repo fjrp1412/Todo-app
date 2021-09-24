@@ -11,6 +11,7 @@ import { TodoHeader } from "../TodoHeader";
 import { TodosError } from "../TodosError";
 import { TodosLoading } from "../TodosLoading";
 import { EmptyTodos } from "../EmptyTodos";
+import { ChangeAlert } from "../ChangeAlert";
 
 // import "./App.css";
 
@@ -28,6 +29,7 @@ function App() {
     searchValue,
     setSearchValue,
     addTodo,
+    sincronizeTodos,
   } = useTodos();
 
   return (
@@ -85,6 +87,7 @@ function App() {
       )}
 
       <CreateTodoButton setOpenModal={setOpenModal} openModal={openModal} />
+      <ChangeAlert sincronize={sincronizeTodos} />
     </>
   );
 }
